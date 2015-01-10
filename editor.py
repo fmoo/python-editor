@@ -1,5 +1,6 @@
 from __future__ import print_function
 
+import locale
 import os.path
 import subprocess
 import tempfile
@@ -74,8 +75,13 @@ def edit(filename=None, contents=None):
 def _get_editor(ns):
     print(get_editor())
 
+
 def _edit(ns):
-    print(edit())
+    contents = ns.contents
+    if contents is not None:
+        contents = contents.encode(locale.getpreferredencoding())
+    print(edit(filename=ns.path, contents=contents))
+
 
 if __name__ == '__main__':
     import argparse
@@ -87,6 +93,8 @@ if __name__ == '__main__':
 
     cmd = sp.add_parser('edit')
     cmd.set_defaults(cmd=_edit)
+    cmd.add_argument('path', type=str, nargs='?')
+    cmd.add_argument('--contents', type=str)
 
     ns = ap.parse_args()
     ns.cmd(ns)
