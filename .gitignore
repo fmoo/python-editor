@@ -52,3 +52,7 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# VIM Artifacts
+.*.swp
+.*.swo
