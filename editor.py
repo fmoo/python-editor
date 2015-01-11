@@ -78,7 +78,7 @@ def edit(filename=None, contents=None):
 
     args += [filename]
 
-    proc = subprocess.Popen(args)
+    proc = subprocess.Popen(args, close_fds=True)
     proc.communicate()
 
     with open(filename, mode='rb') as f:
