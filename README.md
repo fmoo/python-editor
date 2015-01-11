@@ -4,7 +4,7 @@ interfacing with your system's $EDITOR.
 Examples
 --------
 
-```
+```python
 import editor
 commit_msg = editor.edit(contents="# Enter commit message here")
 ```
@@ -12,7 +12,7 @@ Opens an editor, prefilled with the contents, "# Enter commit messdage here".
 When the editor is closed, returns the contents in variable `commit_msg`.
 
 
-```
+```python
 import editor
 editor.edit(file="README.txt")
 ```
