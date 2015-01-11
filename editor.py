@@ -50,10 +50,12 @@ def get_platform_editor_var():
 
 
 def get_editor():
-    env_editor = os.path.expandvars('$EDITOR')
-    if env_editor != '$EDITOR' and env_editor.strip():
-        return env_editor
+    # Get the editor from the environment.  Prefer VISUAL to EDITOR
+    editor = os.environ.get('VISUAL') or os.environ.get('EDITOR')
+    if editor:
+        return editor
 
+    # None found in the environment.  Fallback to platform-specific defaults.
     for ed in get_default_editors():
         path = find_executable(ed)
         if path is not None:
