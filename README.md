@@ -8,7 +8,7 @@ Examples
 import editor
 commit_msg = editor.edit(contents="# Enter commit message here")
 ```
-Opens an editor, prefilled with the contents, "# Enter commit messdage here".
+Opens an editor, prefilled with the contents, `# Enter commit message here`.
 When the editor is closed, returns the contents in variable `commit_msg`.
 
 
