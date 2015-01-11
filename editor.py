@@ -7,6 +7,13 @@ import tempfile
 from distutils.spawn import find_executable
 
 
+__all__ = [
+    'edit',
+    'get_editor',
+    'EditorError',
+]
+
+
 class EditorError(RuntimeError):
     pass
 
