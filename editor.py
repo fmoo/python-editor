@@ -37,6 +37,9 @@ def get_editor_args(editor):
     elif editor == 'gedit':
         return '-w --new-window'
 
+    elif editor == 'nano':
+        return '-R'
+
     else:
         return ''
 
