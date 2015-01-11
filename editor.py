@@ -34,6 +34,9 @@ def get_editor_args(editor):
     elif editor == 'emacs':
         return '-nw'
 
+    elif editor == 'gedit':
+        return '-w --new-window'
+
     else:
         return ''
 
