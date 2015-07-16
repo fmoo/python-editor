@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+"""Tools for invoking editors programmatically."""
+
 from __future__ import print_function
 
 import locale
