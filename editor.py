@@ -16,6 +16,8 @@ __all__ = [
     'EditorError',
 ]
 
+__version__ = '0.4'
+
 
 class EditorError(RuntimeError):
     pass
