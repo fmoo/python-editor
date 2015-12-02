@@ -26,6 +26,7 @@ class EditorError(RuntimeError):
 def get_default_editors():
     # TODO: Make platform-specific
     return [
+        'editor',
         'vim',
         'emacs',
         'nano',
