@@ -34,7 +34,7 @@ def get_default_editors():
 
 
 def get_editor_args(editor):
-    if editor in ['vim', 'gvim']:
+    if editor in ['vim', 'gvim', 'vim.basic', 'vim.tiny']:
         return '-f -o'
 
     elif editor == 'emacs':
