@@ -26,6 +26,7 @@ class EditorError(RuntimeError):
 def get_default_editors():
     # TODO: Make platform-specific
     return [
+        'editor',
         'vim',
         'emacs',
         'nano',
@@ -72,7 +73,7 @@ def get_editor():
 
 def edit(filename=None, contents=None):
     editor = get_editor()
-    args = get_editor_args(os.path.basename(editor))
+    args = get_editor_args(os.path.basename(os.path.realpath(editor)))
     args = [editor] + args.split(' ')
 
     if filename is None:
