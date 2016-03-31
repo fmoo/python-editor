@@ -85,9 +85,12 @@ def edit(filename=None, contents=None, use_tty=True):
             f.write(contents)
 
     args += [filename]
-    extra = {'stdout': open('/dev/tty', 'wb')} if use_tty else {}
 
-    proc = subprocess.Popen(args, close_fds=True, **extra)
+    stdout = None
+    if use_tty:
+        stdout = open('/dev/tty', 'wb')
+
+    proc = subprocess.Popen(args, close_fds=True, stdout=stdout)
     proc.communicate()
 
     with open(filename, mode='rb') as f:
