@@ -71,7 +71,7 @@ def get_editor():
         "Please consider setting your %s variable" % get_platform_editor_var())
 
 
-def edit(filename=None, contents=None):
+def edit(filename=None, contents=None, use_tty=True):
     editor = get_editor()
     args = get_editor_args(os.path.basename(os.path.realpath(editor)))
     args = [editor] + args.split(' ')
@@ -85,8 +85,9 @@ def edit(filename=None, contents=None):
             f.write(contents)
 
     args += [filename]
+    extra = {'stdout': open('/dev/tty', 'wb')} if use_tty else {}
 
-    proc = subprocess.Popen(args, close_fds=True)
+    proc = subprocess.Popen(args, close_fds=True, **extra)
     proc.communicate()
 
     with open(filename, mode='rb') as f:
