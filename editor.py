@@ -71,7 +71,7 @@ def get_editor():
         "Please consider setting your %s variable" % get_platform_editor_var())
 
 
-def edit(filename=None, contents=None, use_tty=True):
+def edit(filename=None, contents=None, use_tty=False):
     editor = get_editor()
     args = get_editor_args(os.path.basename(os.path.realpath(editor)))
     args = [editor] + args.split(' ')
