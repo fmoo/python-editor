@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '0.5'
+version = '1.0'
 
 setup(
     name='python-editor',
@@ -18,6 +18,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Topic :: Software Development :: Libraries',
     ],
     keywords='editor library vim emacs',
