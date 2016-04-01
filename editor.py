@@ -3,6 +3,7 @@
 
 from __future__ import print_function
 
+import sys
 import locale
 import os.path
 import subprocess
@@ -71,10 +72,19 @@ def get_editor():
         "Please consider setting your %s variable" % get_platform_editor_var())
 
 
-def edit(filename=None, contents=None, use_tty=False):
+def get_tty_filename():
+    if sys.platform == 'win32':
+        return 'CON:'
+    return '/dev/tty'
+
+
+def edit(filename=None, contents=None, use_tty=None):
     editor = get_editor()
     args = get_editor_args(os.path.basename(os.path.realpath(editor)))
     args = [editor] + args.split(' ')
+
+    if use_tty is None:
+        use_tty = sys.stdin.isatty() and not sys.stdout.isatty()
 
     if filename is None:
         tmp = tempfile.NamedTemporaryFile()
@@ -88,7 +98,7 @@ def edit(filename=None, contents=None, use_tty=False):
 
     stdout = None
     if use_tty:
-        stdout = open('/dev/tty', 'wb')
+        stdout = open(get_tty_filename(), 'wb')
 
     proc = subprocess.Popen(args, close_fds=True, stdout=stdout)
     proc.communicate()
