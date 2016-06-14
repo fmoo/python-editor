@@ -1,14 +1,19 @@
-from setuptools import setup
+__VERSION__ = '1.0.1'
 
-version = '1.0'
+from setuptools import setup
+try:
+    import pypandoc
+    long_description = pypandoc.convert('README.md', 'rst')
+except ImportError:
+    long_description = None
 
 setup(
     name='python-editor',
-    version=version,
+    version=__VERSION__,
     description="Programmatically open an editor, capture the result.",
-    #long_description='',
+    long_description=long_description,
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Operating System :: OS Independent',
