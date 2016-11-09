@@ -51,11 +51,6 @@ def get_editor_args(editor):
         return []
 
 
-def get_platform_editor_var():
-    # TODO: Make platform specific
-    return "$EDITOR"
-
-
 def get_editor():
     # Get the editor from the environment.  Prefer VISUAL to EDITOR
     editor = os.environ.get('VISUAL') or os.environ.get('EDITOR')
@@ -69,7 +64,7 @@ def get_editor():
             return path
 
     raise EditorError("Unable to find a viable editor on this system."
-        "Please consider setting your %s variable" % get_platform_editor_var())
+        "Please consider setting your $EDITOR variable")
 
 
 def get_tty_filename():
