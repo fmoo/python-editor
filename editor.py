@@ -36,19 +36,19 @@ def get_default_editors():
 
 def get_editor_args(editor):
     if editor in ['vim', 'gvim', 'vim.basic', 'vim.tiny']:
-        return '-f -o'
+        return ['-f', '-o']
 
     elif editor == 'emacs':
-        return '-nw'
+        return ['-nw']
 
     elif editor == 'gedit':
-        return '-w --new-window'
+        return ['-w', '--new-window']
 
     elif editor == 'nano':
-        return '-R'
+        return ['-R']
 
     else:
-        return ''
+        return []
 
 
 def get_platform_editor_var():
@@ -80,8 +80,7 @@ def get_tty_filename():
 
 def edit(filename=None, contents=None, use_tty=None):
     editor = get_editor()
-    args = get_editor_args(os.path.basename(os.path.realpath(editor)))
-    args = [editor] + args.split(' ')
+    args = [editor] + get_editor_args(os.path.basename(os.path.realpath(editor)))
 
     if use_tty is None:
         use_tty = sys.stdin.isatty() and not sys.stdout.isatty()
