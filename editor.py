@@ -97,8 +97,10 @@ def edit(filename=None, contents=None, use_tty=None):
     proc = subprocess.Popen(args, close_fds=True, stdout=stdout)
     proc.communicate()
 
-    with open(filename, mode='rb') as f:
-        return f.read()
+    if os.path.isfile(filename):
+        with open(filename, mode='rb') as f:
+            return f.read()
+    return None
 
 
 def _get_editor(ns):
