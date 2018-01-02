@@ -4,6 +4,9 @@ from setuptools import setup
 try:
     import pypandoc
     long_description = pypandoc.convert('README.md', 'rst')
+except OSError:
+    # Stolen from pypandoc: if pandoc is not installed, fallback to using raw contents
+    long_description = open('README.md').read()
 except ImportError:
     long_description = None
 
