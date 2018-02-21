@@ -86,8 +86,7 @@ def edit(filename=None, contents=None, use_tty=None):
 
     if contents is not None:
         with open(filename, mode='wb') as f:
-            f.write(contents)
-
+            f.write(str.encode(contents))
     args += [filename]
 
     stdout = None
