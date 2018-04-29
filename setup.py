@@ -1,20 +1,16 @@
 __VERSION__ = '1.0.3'
 
 from setuptools import setup
-try:
-    import pypandoc
-    long_description = pypandoc.convert('README.md', 'rst')
-except OSError:
-    # Stolen from pypandoc: if pandoc is not installed, fallback to using raw contents
-    long_description = open('README.md').read()
-except ImportError:
-    long_description = None
+
+with open('README.md') as f:
+    long_description = f.read()
 
 setup(
     name='python-editor',
     version=__VERSION__,
     description="Programmatically open an editor, capture the result.",
     long_description=long_description,
+    long_description_content_type='text/markdown',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
