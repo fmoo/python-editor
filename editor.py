@@ -17,7 +17,7 @@ __all__ = [
     'EditorError',
 ]
 
-__version__ = '1.0.3'
+__version__ = '1.0.4'
 
 
 class EditorError(RuntimeError):
