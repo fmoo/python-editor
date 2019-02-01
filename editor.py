@@ -73,7 +73,7 @@ def get_tty_filename():
     return '/dev/tty'
 
 
-def edit(filename=None, contents=None, use_tty=None, suffix=None):
+def edit(filename=None, contents=None, use_tty=None, suffix=''):
     editor = get_editor()
     args = [editor] + get_editor_args(os.path.basename(os.path.realpath(editor)))
 
