@@ -85,6 +85,10 @@ def edit(filename=None, contents=None, use_tty=None, suffix=''):
         filename = tmp.name
 
     if contents is not None:
+        # For python3 only.  If str is passed instead of bytes, encode default
+        if hasattr(contents, 'encode'):
+            contents = contents.encode()
+
         with open(filename, mode='wb') as f:
             f.write(contents)
 
