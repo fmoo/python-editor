@@ -46,6 +46,9 @@ def get_editor_args(editor):
 
     elif editor == 'nano':
         return ['-R']
+    
+    elif editor == 'code':
+        return ["-w", "-n"]
 
     else:
         return []
