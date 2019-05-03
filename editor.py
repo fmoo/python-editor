@@ -8,6 +8,7 @@ import locale
 import os.path
 import subprocess
 import tempfile
+import shlex
 from distutils.spawn import find_executable
 
 
@@ -78,7 +79,7 @@ def get_tty_filename():
 
 def edit(filename=None, contents=None, use_tty=None, suffix=''):
     editor = get_editor()
-    args = [editor] + get_editor_args(os.path.basename(os.path.realpath(editor)))
+    args = shlex.split(editor) + get_editor_args(os.path.basename(os.path.realpath(editor)))
 
     if use_tty is None:
         use_tty = sys.stdin.isatty() and not sys.stdout.isatty()
