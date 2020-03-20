@@ -15,7 +15,7 @@ Note that the argument to `contents` needs to be a bytes object on Python 3.
 
 
 ```python
-editor.edit(file="README.txt")
+editor.edit(filename="README.txt")
 ```
 
 Opens README.txt in an editor.  Changes are saved in place.  If there is
