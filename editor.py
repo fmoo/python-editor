@@ -8,8 +8,6 @@ import locale
 import os.path
 import subprocess
 import tempfile
-from distutils.spawn import find_executable
-
 
 __all__ = [
     'edit',
@@ -17,7 +15,7 @@ __all__ = [
     'EditorError',
 ]
 
-__version__ = '1.0.4'
+__version__ = '1.0.5'
 
 
 class EditorError(RuntimeError):
@@ -46,7 +44,7 @@ def get_editor_args(editor):
 
     elif editor == 'nano':
         return ['-R']
-    
+
     elif editor == 'code':
         return ["-w", "-n"]
 
@@ -55,6 +53,17 @@ def get_editor_args(editor):
 
 
 def get_editor():
+    # The import from distutils needs to be here, at this low level to
+    # prevent import of 'editor' itself from breaking inquirer. This
+    # has to do with ubuntu (debian) python packages artificially
+    # separated from distutils.
+    #
+    # If this import is at top level inquirer breaks on ubuntu until
+    # the user explicitly apt-get install python3-distutils. With the
+    # import here it will only break if the code is utilizing the
+    # inquirer editor prompt.
+    from distutils.spawn import find_executable
+
     # Get the editor from the environment.  Prefer VISUAL to EDITOR
     editor = os.environ.get('VISUAL') or os.environ.get('EDITOR')
     if editor:
