@@ -62,7 +62,10 @@ def get_editor():
     # the user explicitly apt-get install python3-distutils. With the
     # import here it will only break if the code is utilizing the
     # inquirer editor prompt.
-    from distutils.spawn import find_executable
+    try:
+        from distutils.spawn import find_executable
+    except ImportError:
+        from shutil import which as find_executable
 
     # Get the editor from the environment.  Prefer VISUAL to EDITOR
     editor = os.environ.get('VISUAL') or os.environ.get('EDITOR')
