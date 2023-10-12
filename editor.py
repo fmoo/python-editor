@@ -98,6 +98,7 @@ def edit(filename=None, contents=None, use_tty=None, suffix=''):
     if filename is None:
         tmp = tempfile.NamedTemporaryFile(suffix=suffix)
         filename = tmp.name
+        tmp.close()
 
     if contents is not None:
         # For python3 only.  If str is passed instead of bytes, encode default
