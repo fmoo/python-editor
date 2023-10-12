@@ -88,7 +88,7 @@ def get_tty_filename():
     return '/dev/tty'
 
 
-def edit(filename=None, contents=None, use_tty=None, suffix=''):
+def edit(filename=None, contents=None, use_tty=None, suffix='', read_file=True):
     editor = get_editor()
     args = [editor] + get_editor_args(os.path.basename(os.path.realpath(editor)))
 
@@ -116,8 +116,9 @@ def edit(filename=None, contents=None, use_tty=None, suffix=''):
     proc = subprocess.Popen(args, close_fds=True, stdout=stdout)
     proc.communicate()
 
-    with open(filename, mode='rb') as f:
-        return f.read()
+    if read_file:
+        with open(filename, mode='rb') as f:
+            return f.read()
 
 
 def _get_editor(ns):
